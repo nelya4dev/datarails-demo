@@ -1,6 +1,6 @@
 markdown# DataRails Demo - Setup Instructions
 
-## 📋 Overview
+## Overview
 
 This is a full-stack data processing application that:
 - Uploads Excel files with employee and project data
@@ -188,7 +188,7 @@ docker-compose up -d
 6. **Configure proper ALLOWED_HOSTS**
 7. **Use HTTPS with reverse proxy (nginx)**
 
-## 📈 Performance Tips
+## Performance Tips
 
 ### For Large Files
 
