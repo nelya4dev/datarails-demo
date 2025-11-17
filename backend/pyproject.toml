@@ -1,0 +1,71 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Nelya Parfenova",email = "nelya.parfenova@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi (>=0.121.2,<0.122.0)",
+    "sqlalchemy (>=2.0.44,<3.0.0)",
+    "alembic (>=1.17.2,<2.0.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "uvicorn (>=0.38.0,<0.39.0)",
+    "psycopg[binary] (>=3.2.12,<4.0.0)",
+    "python-dotenv (>=1.2.1,<2.0.0)",
+    "pydantic-settings (>=2.12.0,<3.0.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
+    "click (>=8.3.1,<9.0.0)",
+    "pandas (>=2.3.3,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "celery[redis] (>=5.5.3,<6.0.0)",
+    "flower (>=2.0.1,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "backend", from = "src"}]
+
+[tool.alembic]
+script_location = "alembic"
+prepend_sys_path = "."
+version_path_separator = "os"
+
+[tool.alembic.loggers]
+keys = "root,sqlalchemy,alembic"
+
+[tool.alembic.handlers]
+keys = "console"
+
+[tool.alembic.formatters]
+keys = "generic"
+
+[tool.alembic.logger_root]
+level = "WARN"
+handlers = "console"
+qualname = ""
+
+[tool.alembic.logger_sqlalchemy]
+level = "WARN"
+handlers = ""
+qualname = "sqlalchemy.engine"
+
+[tool.alembic.logger_alembic]
+level = "INFO"
+handlers = ""
+qualname = "alembic"
+
+[tool.alembic.handler_console]
+class = "StreamHandler"
+args = "(sys.stderr,)"
+level = "NOTSET"
+formatter = "generic"
+
+[tool.alembic.formatter_generic]
+format = "%(levelname)-5.5s [%(name)s] %(message)s"
+datefmt = "%H:%M:%S"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

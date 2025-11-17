@@ -1,0 +1,6 @@
+source_sheet,source_field,target_field,transformation_type,parameters
+Employees,department_code,department_name,MAPPING,"HR:Human Resources, DEV:Development, FIN:Finance"
+Employees,salary,annual_salary_eur,CALCULATION,0.92
+Employees,hire_date,tenure_years,CALCULATION,DATE_DIFF_TO_NOW
+Projects,budget_usd,budget_usd,CLEANING,REMOVE_QUOTES
+Projects,status,status,FORMATTING,CAPITALIZE
