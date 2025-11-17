@@ -17,6 +17,7 @@ import {
 } from "@/components/status";
 import { useJobStatus } from "@/hooks";
 import { calculateProgress } from "@/utils/statusHelpers";
+import type { JobError } from "@/types/job.types";
 
 function JobStatusPage() {
   const { jobId } = useParams<{ jobId: string }>();
@@ -62,6 +63,22 @@ function JobStatusPage() {
 
   // Calculate progress
   const progress = calculateProgress(data.processed_rows, data.total_rows);
+
+  // Parse errors from error_details
+  const parseErrors = (errorDetails: Record<string, unknown> | null): JobError[] => {
+    if (!errorDetails || typeof errorDetails !== 'object') return [];
+
+    const errorsArray = (errorDetails as { errors?: unknown[] }).errors;
+    if (!Array.isArray(errorsArray)) return [];
+
+    return errorsArray.map((err: any) => ({
+      row: err.row || 0,
+      field: err.sheet || '',
+      message: err.error || err.message || 'Unknown error'
+    }));
+  };
+
+  const errors = parseErrors(data.error_details);
 
   return (
     <div className="py-8 px-6">
@@ -114,7 +131,7 @@ function JobStatusPage() {
             {/* Error Summary */}
             {data.status === "failed" && data.error_details && (
               <ErrorSummary
-                errors={[]}
+                errors={errors}
                 errorRows={data.error_rows ?? 0}
               />
             )}
@@ -122,7 +139,7 @@ function JobStatusPage() {
             {/* Error Summary for completed jobs with errors */}
             {data.status === "completed" && data.error_rows && data.error_rows > 0 && (
               <ErrorSummary
-                errors={[]}
+                errors={errors}
                 errorRows={data.error_rows}
               />
             )}
