@@ -9,7 +9,7 @@ This is a full-stack data processing application that:
 - Stores data in PostgreSQL
 - Provides a React frontend for file upload and data viewing
 
-## 🏗️ Architecture
+## Architecture
 ```
 ┌─────────────┐      ┌─────────────┐      ┌──────────────┐
 │   React     │─────▶│   FastAPI   │─────▶│  PostgreSQL  │
@@ -23,7 +23,7 @@ This is a full-stack data processing application that:
                      └─────────────┘      └──────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -91,7 +91,7 @@ docker-compose logs -f
 - **Celery Flower**: http://localhost:5555
 - **PgAdmin**: http://localhost:5050
 
-## 📁 Project Structure
+## Project Structure
 ```
 datarails-demo/
 ├── backend/                 # FastAPI backend
@@ -123,7 +123,7 @@ datarails-demo/
 └── .env                   # Environment variables
 ```
 
-## 📊 Monitoring
+## Monitoring
 
 ### Celery Flower Dashboard
 
@@ -150,7 +150,7 @@ Monitor:
 - Query performance
 - Active connections
 
-## 🧹 Cleanup
+## Cleanup
 
 ### Remove All Data
 ```bash
@@ -176,7 +176,7 @@ docker volume rm datarails-demo_postgres-data
 docker-compose up -d
 ```
 
-## 🔐 Security Notes
+## Security Notes
 
 **For Production Deployment:**
 
@@ -187,7 +187,6 @@ docker-compose up -d
 5. **Set APP_MODE=production**
 6. **Configure proper ALLOWED_HOSTS**
 7. **Use HTTPS with reverse proxy (nginx)**
-8. **Enable authentication/authorization**
 
 ## 📈 Performance Tips
 
